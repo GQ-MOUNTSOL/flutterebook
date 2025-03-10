@@ -3,24 +3,23 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_ebook_app/src/common/presentation/ui/pages/summary_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
 class BookListItem extends ConsumerWidget {
   final Entry entry;
 
-  BookListItem({
-    super.key,
-    required this.entry,
-  });
+  BookListItem({Key? key, required this.entry}) : super(key: key);
 
   static const uuid = Uuid();
-  final String imgTag = uuid.v4();
-  final String titleTag = uuid.v4();
-  final String authorTag = uuid.v4();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String imgTag = uuid.v4();
+    final String titleTag = uuid.v4();
+    final String authorTag = uuid.v4();
+
     return InkWell(
       onTap: () {
         final bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
@@ -111,15 +110,39 @@ class BookListItem extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 10.0),
-                  Text(
-                    '${entry.summary!.t!.length < 100 ? entry.summary!.t! : entry.summary!.t!.substring(0, 100)}...'
-                        .replaceAll(r'\n', '\n')
-                        .replaceAll(r'\r', '')
-                        .replaceAll(r'\"', '"'),
-                    style: TextStyle(
-                      fontSize: 13.0,
-                      color: context.theme.textTheme.bodySmall!.color,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SummaryPage(summary: entry.summary!.t!),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '${entry.summary!.t!.length < 100 ? entry.summary!.t! : entry.summary!.t!.substring(0, 100)}...'
+                          .replaceAll(r'\n', '\n')
+                          .replaceAll(r'\r', '')
+                          .replaceAll(r'\"', '"'),
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        color: context.theme.textTheme.bodySmall!.color,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
+                  ),
+                  const SizedBox(height: 10.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SummaryPage(summary: entry.summary!.t!),
+                        ),
+                      );
+                    },
+                    child: Text('Detailed Summary'),
                   ),
                 ],
               ),

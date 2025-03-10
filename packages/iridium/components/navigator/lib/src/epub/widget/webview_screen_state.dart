@@ -9,7 +9,7 @@ import 'package:dfunc/dfunc.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart' hide Decoration;
+import 'package:flutter/material.dart' hide Decoration, SelectionListener;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mno_webview/webview.dart';
 import 'package:mno_navigator/epub.dart';
@@ -167,8 +167,7 @@ class WebViewScreenState extends State<WebViewScreen> {
       ? InAppWebView(
           key: _webViewKey,
           initialUrlRequest: URLRequest(
-              url: Uri.parse(
-                  '${widget.address}/${link.href.removePrefix("/")}')),
+              url: WebUri('${widget.address}/${link.href.removePrefix("/")}')),
           initialOptions: InAppWebViewGroupOptions(
             android: AndroidInAppWebViewOptions(
               useHybridComposition: true,

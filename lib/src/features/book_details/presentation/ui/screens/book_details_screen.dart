@@ -300,7 +300,7 @@ class _DownloadButton extends ConsumerWidget {
         onPressed: () {
           DownloadAlert.show(
             context: context,
-            url: entry.link![3].href!,
+            url: entry.link![1].href!,
             name: entry.title!.t ?? '',
             image: '${entry.link![1].href}',
             id: entry.id!.t.toString(),

@@ -15,10 +15,10 @@ dependencies:
   dartx: ^1.1.0
   device_info_plus: ^9.0.1
   ffi: ^2.0.2
-  fimber: ^0.6.6
+  fimber: ^0.7.0
   flutter_archive: ^5.0.0
   mno_fsm: ^0.2.3
-  multiple_localization: ^0.3.0
+  multiple_localization: any
   path: ^1.8.3
   path_provider: ^2.0.15
   shared_preferences: ^2.1.1
@@ -32,7 +32,7 @@ dependencies:
     path: ../shared
 
 dependency_overrides:
-  intl: ^0.18.1
+  intl: any
   collection: ^1.17.2
 
 dev_dependencies:

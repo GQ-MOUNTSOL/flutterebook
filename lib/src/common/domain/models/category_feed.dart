@@ -297,6 +297,7 @@ class Entry {
   Id? dctermsPublisher;
   Id? dctermsIssued;
   Id? summary;
+  Id? urduSummary;
   List<Category>? category;
   List<Link1>? link;
   SchemaSeries? schemaSeries;
@@ -311,6 +312,7 @@ class Entry {
     this.dctermsPublisher,
     this.dctermsIssued,
     this.summary,
+    this.urduSummary,
     this.category,
     this.link,
     this.schemaSeries,
